@@ -114,6 +114,7 @@ func formatJiraTicket(jsonVuln jsn.Json, projectInfo jsn.Json) *JiraIssue {
 		snykBreadcrumbs,
 		descriptionFromIssue,
 		moreAboutThisIssue,
+		"\n**More Details:**\n", issueData.K("description").String().Value,
 	}
 
 	descriptionBody := markdownToConfluenceWiki(strings.Join(issueDetails, " "))

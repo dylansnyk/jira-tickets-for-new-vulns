@@ -9,7 +9,9 @@ import (
 
 // IssuesFilter is the top level filter type of filtering Snyk response
 type IssuesFilter struct {
-	Filters Filter `json:"filters"`
+	Filters 					Filter 	`json:"filters"`
+	IncludeDescription 			bool  	`json:"includeDescription"`
+	IncludeIntroducedThrough 	bool  	`json:"includeIntroducedThrough"`
 }
 
 type score struct {
@@ -42,6 +44,8 @@ func getVulnsWithoutTicket(flags flags, projectID string, maturityFilter []strin
 			Ignored:    false,
 			Patched:    false,
 		},
+		true,
+		true,
 	}
 	if flags.optionalFlags.issueType != "all" && flags.optionalFlags.issueType != "" {
 		body.Filters.Types = []string{flags.optionalFlags.issueType}
